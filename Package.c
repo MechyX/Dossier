@@ -270,10 +270,10 @@ void instruction()
     printf("6.The Player also can quit the game if he or she is not interested by typing the QUIT in small case when the player is asked for a letter guess.\n");
     printf("7.The player wins he his or her guesses are within the word's total number of letters and having more than 0 zero lives.\n");
     printf("8.The player loses if he or she does not satisfy the above criteria.\n");
-    printf("7.The game is involves more luck compared to the logic.\n\n");
-    printf("8.You can only guess one letter at a time\n");
-    printf("guessing the same correct letter does not affect the lives\n");
-    printf("*****GOOD LUCK*****\n\n\n\n\n\n\n");
+    printf("7.The game is involves more luck compared to the logic.\n");
+    printf("9.You can only guess one letter at a time\n");
+    printf("10.guessing the same correct letter does not affect the lives\n\n\n");
+    printf("\t\t\t\t\t*****GOOD LUCK*****\n\n\n\n\n\n\n");
 
 }
 
