@@ -1,12 +1,14 @@
-/*
-    Hangman Game C Code by S RITHESH 19PW29, 1st Year MSc Software Systems
 
-//The header files
-//stdio.h has input has been used for basic I/O processes.
-//string.h is used to handle character arrays
-//stdlib.h is used for random randomise functions.
-//conio.h is used for getting a character.
-//windows.h is used for using virtual key codes and sleep functions.*/
+
+/*
+    Hangman Game 'C' Code by S RITHESH 19PW29, 1st Year MSc Software Systems
+
+The header files
+stdio.h has input has been used for basic I/O processes.
+string.h is used to handle character arrays
+stdlib.h is used for random randomise functions.
+conio.h is used for getting a character.
+windows.h is used for using virtual key codes and sleep functions.*/
 
 
 
@@ -23,7 +25,7 @@ void printhangman();
 int main()
 {
 
-    srand(time(NULL));
+    srand(time(NULL));          //uses the system time to generate different numbers.
 
     // Already Declared Words.
 
@@ -70,16 +72,17 @@ int main()
 
     char letterGuessed;
     int choice;
-    int invalidinput;
+    int invalidinput=0;
 
+    int ultra=1;
 
     printf("%s\n\n",GuessWord[RanIndex]);
 
     do
     {
-
+        system("COLOR 4E");
         printf("1.Play\n");
-        printf("2.Instructions\n");
+        printf("2.Instructions\n");                     //Menu Display
         printf("3.Exit\n\n");
 
         printf("Enter the choice: ");
@@ -107,14 +110,15 @@ int main()
 
     // A while loop that runs till the game ends.
 
-    for(i=1;i<100;i++)
+    for(i=1;i<30;i++)
     {
         printf("\n\n\n\n\t\t\t\tLOADING");
+        Sleep(50);
         system("cls");
-        Sleep(5);
+        Sleep(50);
     }
 
-
+        system("COLOR 0C");
     while(Guessed<LengthOfWord)
     {
 
@@ -140,6 +144,15 @@ int main()
             printf("No of Correct Guesses are %d\n\n",Guessed);
 
             printf("Number of lives remaining:%d\n\n",AvaiLives);
+
+            printhangman(AvaiLives);
+
+
+
+            if(AvaiLives==1)
+            {
+                printf("It is Your last chance the save man!!!\n\n");
+            }
 
             printf("Guess a letter:  ");
 
@@ -196,7 +209,7 @@ int main()
 
             if(invalidinput)
             {
-                printf("****INVALID INPUT****\n\n\n\n");
+                printf("****INVALID INPUT****\n\n\n\n");         //prints it whenever user enters a incorrect input.
             }
 
             //printf("Press Enter to continue\n");
@@ -229,9 +242,12 @@ int main()
                 {
                     printf("%c ",GuessWord[RanIndex][i]);
                 }
-                printf("You won!!!!\n\n");
-            }
 
+                printf("You won!!!!\n\n");
+
+                }
+
+            printf("Thank you for trying this game!\n");
             return 0;
 
 }
@@ -255,41 +271,49 @@ void instruction()
     printf("7.The player wins he his or her guesses are within the word's total number of letters and having more than 0 zero lives.\n");
     printf("8.The player loses if he or she does not satisfy the above criteria.\n");
     printf("7.The game is involves more luck compared to the logic.\n\n");
-    printf("8.You can only guess one letter at a time");
+    printf("8.You can only guess one letter at a time\n");
+    printf("guessing the same correct letter does not affect the lives\n");
     printf("*****GOOD LUCK*****\n\n\n\n\n\n\n");
 
 }
 
 
-/*void printhangman()
+void printhangman(int p)
 {
 
     //Function to depict the picture of hangman.
     //Depends upon number of guesses.
 
+        printf("_____________________\n");
 
-    printf("\t\t\t\t\t\t_____________________\n");
+    //To Print the rope
 
-    //To Print the
+        printf("          |         \n");
+        printf("          |         \n");
 
-
-    printf("\t\t\t\t\t\t          |         \n");
-    printf("\t\t\t\t\t\t          |         \n");
-    if(AvaiLives==4)
+   if(p<=4)
     {
-    printf("\t\t\t\t\t\t          0         \n");
+        printf("          0         \n");
+    }
 
-    printf("\t\t\t\t\t\t          |         \n");
+   if(p<=3)
+    {
+        printf("          |         \n");
+    }
 
     //  "\\" since double is a escape sequence,double slash is to escape the backslash
 
-    printf("\t\t\t\t\t\t         \\|/      \n");
-    printf("\t\t\t\t\t\t          |         \n");
-    printf("\t\t\t\t\t\t         / \\        \n");
-}       */
+   if(p<=2)
+    {
+        printf("         \\|/      \n");
+    }
+   if(p<=1)
+    {
+        printf("          |         \n");
+        printf("         / \\       \n");
+    }
 
-
-
+}
 
 
 
