@@ -76,8 +76,7 @@ int main()
 
     int ultra=1;
 
-    printf("%s\n\n",GuessWord[RanIndex]);
-
+    // Runs Until user decides to play or quit.
     do
     {
         system("COLOR 4E");
