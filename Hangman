@@ -21,7 +21,7 @@ int main()
     // Already Declared Words.
 
 
-    char GuessWord[][20] =  {
+    char GuessWord[][20] = {
                               "orange",
                               "yellow",
                               "blue",
