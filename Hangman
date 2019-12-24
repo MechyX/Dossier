@@ -1,14 +1,5 @@
 
-
-/*
-    Hangman Game 'C' Code by S RITHESH 19PW29, 1st Year MSc Software Systems
-
-The header files
-stdio.h has input has been used for basic I/O processes.
-string.h is used to handle character arrays
-stdlib.h is used for random randomise functions.
-conio.h is used for getting a character.
-windows.h is used for using virtual key codes and sleep functions.*/
+//A Very Simple hangman game.
 
 
 
