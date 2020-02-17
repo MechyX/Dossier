@@ -45,6 +45,7 @@ void doublylinkedlist :: insertbeg(int data){
     else{
         temp->next=head;
         head=temp;
+        temp->next->prev=temp;
         }      
 }
 
@@ -219,16 +220,15 @@ void doublylinkedlist :: deleteEnd(){
             cout<<"No Node Available";
 
     else{
-            cout<<"Im Inside";
+           
             Node *t =head;
 
             while((t->next)!=NULL){
-                    cout<<"Count"<<endl;
                     t=t->next;
             }
                     
             if(t==head){
-                cout<<"Am i inside?"<<endl;
+               
                     delete(head);
                     head=NULL;
             }
@@ -240,7 +240,7 @@ void doublylinkedlist :: deleteEnd(){
             
     }
 
-    cout<<"Escaped"<<endl;
+   
 }
 
 //WORKING
@@ -268,7 +268,7 @@ int main(){
     L.insertbeg(10);
     L.insertbeg(20);
     L.display();
-    L.deleteEnd();  //NOT WORKING
+    L.deleteEnd(); 
     L.display();
     return 0;
 }
