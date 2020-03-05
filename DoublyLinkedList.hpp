@@ -44,8 +44,8 @@ void doublylinkedlist :: insertbeg(int data){
         
     else{
         temp->next=head;
+        head->prev=temp;
         head=temp;
-        temp->next->prev=temp;
         }      
 }
 
@@ -145,17 +145,23 @@ void doublylinkedlist :: deleteBeforeData(int aftData){
              Node* t=head;
               while(t->data!=aftData)
                     t=t->next;
-                
-               Node *d=t->prev;
-               t->prev=d->prev;         
+
                
-               if(t->prev==head)
-                head=t;
-                
-               else
-               (d->prev)->next=t;
+                if(t->prev==head){
+                     Node *d=t->prev;
+                     t->prev=NULL;
+                     head=t;
+                     delete d;
+                }
                
-            delete d;
+                else{
+                    Node *d=t->prev;
+                    t->prev=d->prev;
+                    (d->prev)->next=t;
+                    delete d;
+                }
+               
+            
         }
 
    cout<<endl;
@@ -248,5 +254,3 @@ void doublylinkedlist :: display(){
 
     cout<<endl;
 }
-
-
