@@ -123,22 +123,15 @@ if(head==NULL)
         cout<<"No Node Available";
 
 else{
-            Node* t=head;
-              while(t->data!=aftData)
+                Node* t=head;
+                while(t->data!=aftData)
                     t=t->next;
-            
-            if(t->next!=NULL){
-                 Node * d=t->next;
+           
+                Node *d=t->next;
+                if(d->next!=NULL)
                 (d->next)->prev=t;
                 t->next=d->next;
-                delete (d);
-            }
-            
-            else
-            {
-                cout<<"End Of List"<<endl;
-            }
-            
+                delete (d);            
 }
 }
 
@@ -152,24 +145,18 @@ void doublylinkedlist :: deleteBeforeData(int aftData){
              Node* t=head;
               while(t->data!=aftData)
                     t=t->next;
-
-            if(t->prev==head){
-                Node *d=t->prev;
+                
+               Node *d=t->prev;
+               t->prev=d->prev;         
+               
+               if(t->prev==head)
                 head=t;
-                t->prev=NULL;
-                delete (d);
-            }
-
-            else if(t->prev!=NULL){
-            Node * d=t->prev;
-            (d->prev)->next=t;
-            t->prev=d->prev;
+                
+               else
+               (d->prev)->next=t;
+               
             delete d;
-            }
-
-            else
-                cout<<"No Nodes Available";
-    }
+        }
 
    cout<<endl;
 }
@@ -213,7 +200,7 @@ void doublylinkedlist :: deleteNodeWithData(int aftData){
 
 }
 
-//NOT WORKING
+//WORKING
 void doublylinkedlist :: deleteEnd(){
 
         if(head==NULL)
