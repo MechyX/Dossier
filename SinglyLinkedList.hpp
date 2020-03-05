@@ -157,18 +157,4 @@ void LinkedList :: display(){
 
 }
 
-//WORKING
-int main(){
-    LinkedList L;
-    L.insertAtBeg(1);
-    L.insertAtEnd(10);
-    L.insertAfterData(5,1);
-    L.display();
-    L.deleteAtEnd();
-    L.display();
-    L.deleteAfterData(1);
-    L.display();
-    L.deleteAtBeg();
-    L.display();
-    return 0;
-}
+
