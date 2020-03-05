@@ -262,13 +262,4 @@ void doublylinkedlist :: display(){
     cout<<endl;
 }
 
-int main(){
-    doublylinkedlist L;
-    L.insertbeg(5);
-    L.insertbeg(10);
-    L.insertbeg(20);
-    L.display();
-    L.deleteEnd(); 
-    L.display();
-    return 0;
-}
+
