@@ -67,9 +67,7 @@ void Graph :: sumOfDegrees(){
     cout << "Sum of degrees is " << sum << endl;
 }
 
-void Graph :: shortestPath(){
 
-}
 
 void Graph :: dfs(int vertex){
     list<int> adjacent; //stack
@@ -109,19 +107,79 @@ std::pair<int,int> Graph :: minEdge(int vertex, vector<bool> visited){
     return minPair;
 }
 
+void Graph :: shortestPath(){
+    vector<int> dist(vertices.size(), INT_MAX);
+    set<pair<int, int> > st;
+    st.insert(make_pair(0, 0));
+    dist[0] = 0;
+
+    while (!st.empty()) {
+        pair<int, int> now = *st.begin();
+        st.erase(st.begin());
+
+        int v = now.second;
+        int w = now.first;
+
+        list<pair<int,int> >::iterator it;
+
+        //for all adjacent vertices 
+        for (it = vertices.at(v).begin() ; it != vertices.at(v).end() ; it++) {
+            if (w + (*it).second < dist[(*it).first]) {
+                st.erase(make_pair(dist[(*it).first], (*it).first));
+                dist[(*it).first] = w + (*it).second;
+                st.insert(make_pair(dist[(*it).first], (*it).first));
+            }
+        }
+    }
+
+    for (int i = 0; i < vertices.size(); i++) {
+        cout << i << ' ' << dist[i] << endl;
+    }
+}
+
+
 void Graph :: minSpanningTree(){
     //prim's algorithm 
-    int counter = 0;
-    int i = 0;
-    vector<bool> visited(vertices.size(),false);
-
-    while(counter < vertices.size()){  
-    cout << i << " ";
-    i = minEdge(i, visited).first;
-    visited.at(i) = true;
-    counter++;
-    }
-    cout << endl;
+    priority_queue< pair<int,int> , vector <pair<int,int> > , greater<pair<int,int> > > pq; 
+  
+    vector<int> key(vertices.size(), INT_MAX); 
+    vector<int> parent(vertices.size(), -1); 
+    vector<bool> inMST(vertices.size(), false); 
+  
+    pq.push(make_pair(0, 0)); 
+    key[0] = 0; 
+  
+    while (!pq.empty()) 
+    { 
+        int u = pq.top().second; 
+        pq.pop(); 
+  
+        inMST[u] = true;  // Include vertex in MST 
+  
+        // 'i' is used to get all adjacent vertices of a vertex 
+        list< pair<int, int> >::iterator i; 
+        for (i = vertices.at(u).begin(); i != vertices.at(u).end(); ++i) 
+        { 
+            // Get vertex label and weight of current adjacent 
+            // of u. 
+            int v = (*i).first; 
+            int weight = (*i).second; 
+  
+            //  If v is not in MST and weight of (u,v) is smaller 
+            // than current key of v 
+            if (inMST[v] == false && key[v] > weight) 
+            { 
+                // Updating key of v 
+                key[v] = weight; 
+                pq.push(make_pair(key[v], v)); 
+                parent[v] = u;
+            } 
+        } 
+    } 
+  
+    // Print edges of MST using parent array 
+    for (int i = 1; i < vertices.size(); ++i) 
+        cout << parent[i] << " - " << i << endl; 
 }
 
 
@@ -178,6 +236,27 @@ adjacent.push_back(i);
 }
 
 int main(){
-    Graph g(6); 
-    g.minSpanningTree();
+    Graph g(0);
+    
+    //input example
+    //added 9 vertices
+    for(int i = 0; i < 9 ;i++)
+        g.addVertex();
+    
+   
+    //add connections
+    g.addEdge(0, 1, 4);
+    g.addEdge(0, 7, 8);
+    g.addEdge(1, 2, 8);
+    g.addEdge(1, 7, 11);
+    g.addEdge(2, 3, 7);
+    g.addEdge(2, 8, 2);
+    g.addEdge(2, 5, 4);
+    g.addEdge(3, 4, 9);
+    g.addEdge(3, 5, 14);
+    g.addEdge(4, 5, 10);
+    g.addEdge(5, 6, 2);
+    g.addEdge(6, 7, 1);
+    g.addEdge(6, 8, 6);
+    g.addEdge(7, 8, 7);    
 }
